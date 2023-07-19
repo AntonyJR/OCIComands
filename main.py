@@ -53,6 +53,7 @@ def main():
         regions = iam.region_array(config)
     else:
         regions = [config[oci.config.REGION_KEY_NAME]]
+    result = []
 
     for region in regions:
         config = oci.config.from_file(args.config_file, args.profile)
@@ -62,8 +63,9 @@ def main():
             print("Invalid command : " + args.command)
             exit()
 
-        print(commands[args.command][0](config, args))
+        result += commands[args.command][0](config, args)
 
+    print(result)
 
 if __name__ == '__main__':
     main()
