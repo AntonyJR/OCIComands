@@ -1,3 +1,5 @@
+import sys
+
 import oci
 import argparse
 
@@ -63,9 +65,12 @@ def main():
             print("Invalid command : " + args.command)
             exit()
 
+        if args.all_regions:
+            print(f'Processing {region} region', file=sys.stderr)
         result += commands[args.command][0](config, args)
 
     print(result)
+
 
 if __name__ == '__main__':
     main()
