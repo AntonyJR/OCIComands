@@ -40,7 +40,7 @@ The following parameters are applicable to all commands
 The following parameters are applicable to a subset of commands
 | Parameter | Meaning | Commands |
 |-----------|---------|----------|
-| --param_format | Return a string array rather than json | subscribed_regions, search_resources |
+| --param_format | Return a string array rather than json | subscribed_regions, searchable_resource_types |
 | --resource_type RESOURCE_TYPE | Resource type to search for, may be repeated | search_resources |
 
 ## Examples
