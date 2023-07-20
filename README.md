@@ -4,9 +4,9 @@ Following are pre-requisites to using the commands:
 - Python 3 - [Python.org downloads](https://www.python.org/downloads/)
   - Make sure to install Python 3.6+
 - argparse - [library used by the commands to parse command line](https://pypi.org/project/argparse/)
-  - There are multiple ways to do it but I recommend using `pip install argparse`
+  - There are multiple ways to do it, but I recommend using `pip install argparse`
 - OCI Python SDK - [Oracle.com installation instructions](https://docs.oracle.com/en-us/iaas/tools/python/2.107.0/installation.html#pypi)
-  - There are multiple ways to do it but I recommend using `pip install oci`
+  - There are multiple ways to do it, but I recommend using `pip install oci`
 - OCI client config on machine that will run Python - [Oracle.com Required Keys and OCIDs](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm)
 - jq - [jq download page](https://jqlang.github.io/jq/download/)
   - Not needed for the commands themselves but used by the test script which verifies your installation is working and is handy for transforming json output into just the format you need.
@@ -18,14 +18,14 @@ The commands are run using the following syntax:
 
   `python3 main.py <command> <options>`
 
-By default the commands return json but --param_format can be used to return an array of strings of the most important field.
+By default, the commands return json but --param_format can be used to return an array of strings of the most important field.
 
 ## Available Commands
-| Command | Action | Command Specific Parameters |
-|---------|--------|------------|
-| subscribed_regions | List subscribed regions | --param_format |
-| searchable_resource_types | List resource types | --param_format |
-| search_resources | List resources of provided types in selected regions | --resource_type |
+| Command | Action                                                                                                                   | Command Specific Parameters |
+|---------|--------------------------------------------------------------------------------------------------------------------------|------------|
+| subscribed_regions | List subscribed regions                                                                                                  | --param_format |
+| searchable_resource_types | List resource types                                                                                                      | --param_format |
+| search_resources | List resources of provided types in selected regions, <br/>if no type of resource is provided then all resources are returned | --resource_type |
 
 ### Global Parameters
 The following parameters are applicable to all commands

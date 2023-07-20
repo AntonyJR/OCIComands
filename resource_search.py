@@ -19,7 +19,8 @@ def searchable_resource_types(config, args):
 
 def search_resources(config, args):
     search = resource_search.ResourceSearchClient(config)
-    query = 'query ' + ', '.join(args.resource_type) + ' resources'
+    rt = ', '.join(args.resource_type) if args.resource_type is not None else 'all'
+    query = 'query ' + rt + ' resources'
     return util.oci_page_iterator(search.search_resources, args,
                                   resource_search.models.StructuredSearchDetails(query=query),
                                   nested_array_field='items')

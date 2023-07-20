@@ -25,6 +25,11 @@ echo ==========================================================
 python3 main.py searchable_resource_types --param_format
 
 echo
+echo search_resources json all resources
+echo ==========================================================
+python3 main.py search_resources | wc -l
+
+echo
 echo search_resources json
 echo ==========================================================
 python3 main.py search_resources --resource_type IntegrationInstance --resource_type AutonomousDatabase | wc -l
