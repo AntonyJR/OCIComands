@@ -6,6 +6,8 @@ import argparse
 import iam
 import resource_search
 
+import json
+
 # Commands are registered in this dictionary
 # Command string is used by command parameter
 # Command string is used to identify correct function to execute
@@ -69,7 +71,10 @@ def main():
             print(f'Processing {region} region', file=sys.stderr)
         result += commands[args.command][0](config, args)
 
-    print(result)
+    if len(result) > 0 and isinstance(result[0], (dict, str, int, list)):
+        print(json.dumps(result, indent=2))
+    else:
+        print(result)
 
 
 if __name__ == '__main__':

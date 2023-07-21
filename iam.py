@@ -18,4 +18,14 @@ def subscribed_regions(config, args):
 
 
 def region_array(config):
-    return [region.region_name for region in identity.IdentityClient(config).list_region_subscriptions(config['tenancy']).data]
+    regions = identity.IdentityClient(config).list_region_subscriptions(config['tenancy']).data
+    return [region.region_name for region in regions]
+
+
+def compartment_dictionary(config):
+    identity_client = identity.IdentityClient(config)
+    compartments = util.oci_page_iterator(identity_client.list_compartments, None, config['tenancy'],
+                                          use_args=False, compartment_id_in_subtree=True)
+    compartments_dict = {compartment.id: compartment.name for compartment in compartments}
+    compartments_dict[config['tenancy']] = identity_client.get_tenancy(config['tenancy']).data.name
+    return compartments_dict

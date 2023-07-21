@@ -1,4 +1,5 @@
-def oci_page_iterator(ocifunc, args, *ociargs, param_field=None, paged=True, nested_array_field=None, **ocikwargs):
+def oci_page_iterator(ocifunc, args, *ociargs, param_field=None, paged=True, nested_array_field=None, use_args=True,
+                      **ocikwargs):
     retval = []
     page = None
     if paged:
@@ -8,10 +9,10 @@ def oci_page_iterator(ocifunc, args, *ociargs, param_field=None, paged=True, nes
             ocikwargs['page'] = page
         resp = ocifunc(*ociargs, **ocikwargs)
         resp_data = lambda: resp.data if nested_array_field is None else getattr(resp.data, nested_array_field)
-        if args.param_format:
-            retval = retval + [getattr(obj, param_field) for obj in resp_data()]
+        if use_args and args.param_format:
+            retval += [getattr(obj, param_field) for obj in resp_data()]
         else:
-            retval = retval + resp_data()
+            retval += resp_data()
         if paged and resp.has_next_page:
             page = resp.next_page
             continue
